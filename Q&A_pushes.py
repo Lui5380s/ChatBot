@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 # Absoluter oder relativer Pfad zur bestehenden Datenbank im 'Test'-Ordner
-db_path = os.path.join("Test", "FAQ.db")
+db_path = os.path.join("Test.db")
 
 # Verbindung zur bestehenden Datenbank herstellen
 conn = sqlite3.connect(db_path)
