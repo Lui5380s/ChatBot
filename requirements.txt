@@ -1,17 +1,11 @@
-Benötigte Bibliotheken
-
-	1.	Flask - Für das Web-Framework.
-	2.	sqlite3 (Standardbibliothek) - Für die Datenbankintegration (kein zusätzliches Paket nötig).
-	3.	requests - Zum Abrufen von Webseiten für das Webscraping.
-	4.	openai - Für die Integration von GPT-3.5.
-	5.	beautifulsoup4 - Für das Parsing von HTML beim Webscraping.
-	6.	re (Standardbibliothek) - Für reguläre Ausdrücke (kein zusätzliches Paket nötig).
-	7.	spacy - Für die Verarbeitung natürlicher Sprache.
-	•	Zusätzlich: de_core_news_md (spacy-Modell für Deutsch).
-	8.	numpy - Für numerische Berechnungen.
-	9.	langdetect - Zur Spracherkennung.
-	10.	deep-translator - Für Übersetzungen.
-	11.	fuzzywuzzy - Für Fuzzy-Matching von Text.
-	12.	nltk - Für Tokenisierung und Textverarbeitung.
-	13.	apscheduler - Für die zeitgesteuerte Bereinigung von Konversationen.
-	14.	logging (Standardbibliothek) - Für das Logging von Ereignissen (kein zusätzliches Paket nötig).
+Flask
+requests
+openai
+beautifulsoup4
+spacy
+numpy
+langdetect
+deep-translator
+fuzzywuzzy
+nltk
+apscheduler

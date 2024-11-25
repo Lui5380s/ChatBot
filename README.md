@@ -26,7 +26,7 @@ Der Chatbot bietet folgende Funktionen:
 Obwohl der Chatbot bereits viele Funktionen bietet, gibt es Bereiche, die optimiert werden könnten:
 
 1. **KI-Fallback**: 
-   - Derzeit funktioniert das KI-Fallback noch nicht da man zuvor ein 'Billing' bei OpenAI einrichten muss.
+   - Der Fallback funktioniert nur, wenn OpenAI-Billing eingerichtet ist. Nutzer müssen vorab ein API-Konto mit aktiviertem Billing erstellen. 
 
 2. **Fuzzy Matching**:
    - Die Ähnlichkeitsgrenze ist statisch auf 75 % eingestellt. Anpassungen oder dynamische Schwellenwerte könnten bessere Ergebnisse liefern.
@@ -56,8 +56,8 @@ Obwohl der Chatbot bereits viele Funktionen bietet, gibt es Bereiche, die optimi
 
 1. **Datenbank initialisieren**:
    Stelle sicher, dass die SQLite-Datenbank korrekt eingerichtet ist:
-   ```python
-   python -c "from Backup import init_db; init_db()"
+   ```bash
+      python -c "from Backup import init_db; init_db()"
    ```
 
 2. **Chatbot starten**:
@@ -85,10 +85,6 @@ Obwohl der Chatbot bereits viele Funktionen bietet, gibt es Bereiche, die optimi
 
 ## **Commit-Verlauf**
 
-Der Commit-Verlauf dokumentiert den gesamten Entwicklungsprozess, einschließlich:
-
-- Der ursprünglichen Integration des Chatbots in die Website.
-- Der späteren Extraktion des Chatbots als separates Modul.
-- Verbesserungen und Bugfixes.
+Der vollständige Verlauf ist im commit_history.md zu lesen. 
 
 ---

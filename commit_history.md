@@ -1,0 +1,63 @@
+- **"Refactored Backup.py: updated imports, added scheduler and logging, modified database initialization and conversation history, and changed FAQ data loading and scraping functionality."**
+- **"Added logging functionality to app.py and updated FAQ.db"**
+- **"Updated app.py with changes to imports, function definitions, and logic; added scheduler for cleaning old conversations; updated templates/index.html with meta tags, CSS, and SVG icons."**
+- **"Updated styles for chatbot toggle button and added SVG icons for chat and close; modified JavaScript code to toggle chat container and update button icon on click"**
+- **"Added chatbot component to InnoAISolutionsWebsite, removed chat.html template, and updated app.py to render index.html instead of chat.html"**
+- **Backup 5.0**
+- **"Removed one data source and updated another in dataSources.xml"**
+- **englisch anzeige**
+- **Ausgabenoptimierung vom Webscraping**
+- **Englisch / Deutsch**
+- **Backup4.0**
+- **Rechtschreibung und Grammatik**
+- **Backup4.0**
+- **Backup3.0**
+- **Merge branch 'main' of https://github.com/Lui5380s/InnoAI**
+- **FAQ´s zur Datenbank hinzugefügt und getestet**
+- **Update fragen.txt**
+- **Website**
+- **Update fragen.txt**
+- **Update fragen.txt**
+- **Create fragen.txt**
+- **Mail senden implementiert**
+- **website ordner musiala**
+- **gelöscht**
+- **Test**
+- **Test**
+- **Anpassungen**
+- **Website entfernt**
+- **Verknüpfung der Datenbank und erster Versuch mit spacy**
+- **Ersatz für JSON**
+- **Json ersetzt**
+- **Python um mit der DB zu interagieren**
+- **JSON**
+- **Erster Ansatz für Logikverständnis für Fragesätze**
+- **scroll funktion gemacht**
+- **Backup 2.0**
+- **Backup erstellt**
+- **JSON angepasst**
+- **Erste Shots für Chatbot funktionieren**
+- **Scraping mit FAQ getauscht**
+- **IMG**
+- **Backup lösung für chatbot**
+- **Grundstruktur für ChatBot HTML**
+- **in templates verschoben**
+- **Erster gelungener Versuch für den ChatBot**
+- **styling geändert**
+- **in static verschoben**
+- **Datei gelöscht**
+- **Aus dem Ordner Chatbot gelöscht**
+- **Versuch den Chatbot in die Website zu integrieren**
+- **Create Test.txt**
+- **Versuch OpenAI mit in den ChatBot zu integrieren**
+- **Ordner Struktur für ChatBot**
+- **links angepasst**
+- **Add files via upload**
+- **Ordner Struktur angelegt**
+- **anpassungen am code**
+- **Add files via upload**
+- **Add files via upload**
+- **csv umgeschrieben in json**
+- **Webscraping versuch**
+- **Anlegung der Grundstruktur**
+- **Initial commit**
