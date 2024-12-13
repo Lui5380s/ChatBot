@@ -3,268 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Interaktion</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f9f9f9;
-        }
-
-        #chat-container {
-            width: 400px;
-            background: #fff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #chat-window {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-            max-height: 500px;
-        }
-
-        .message {
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .message.user {
-            align-items: flex-end;
-        }
-
-        .message.bot {
-            align-items: flex-start;
-        }
-
-        .message span {
-            max-width: 70%;
-            padding: 10px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        .message.user span {
-            background: #B277E3;
-            color: white;
-        }
-
-        .message.bot span {
-            background: #E8E8E8;
-            color: black;
-        }
-
-        #chat-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-            background: #f9f9f9;
-        }
-
-        #chat-input input[type="text"] {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            outline: none;
-        }
-
-        #chat-input button {
-            margin-left: 10px;
-            padding: 10px 15px;
-            border: none;
-            background: #B277E3;
-            color: white;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #chat-input button:hover {
-            background: #9e4ae3;
-        }
-
-        .language-buttons, .preset-questions {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .language-buttons button, .preset-questions button {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .language-buttons button.english {
-            background-color: rgb(79, 79, 79);
-            color: white;
-        }
-
-        .language-buttons button.english:hover {
-            background-color: #282828;
-        }
-
-        .language-buttons button.german {
-            background-color: #B277E3;
-            color: white;
-        }
-
-        .language-buttons button.german:hover {
-            background-color: #9e4ae3;
-        }
-
-        .preset-questions button {
-            background-color: #E8E8E8;
-            color: black;
-        }
-
-        .preset-questions button:hover {
-            background-color: #d6d6d6;
-        }
-    </style>
+    <title>Nova - Der ChatBot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Quicksand:wght@300..700&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <div id="chat-container">
-        <div id="chat-window"></div>
-        <div id="chat-input" style="display: none;">
-            <input type="text" id="user-input" placeholder="Schreibe eine Nachricht..." autocomplete="off">
-            <button id="send-button">Senden</button>
+    <div class="main-container">
+        <!-- Nova Intro Section -->
+        <section id="nova-section">
+            <div class="content">
+                <h1>Erlebe Nova - Deinen KI-Chatbot</h1>
+                <p>Nova hilft Dir bei der Optimierung Deiner Kommunikation und bietet innovative Lösungen, die Dein Unternehmen auf das nächste Level bringen. Er beantwortet dir Fragen zu InnoAISolution.</p>
+                <button id="chat-now-btn" onclick="startChat()">CHAT NOW</button>
+            </div>
+        </section>
+    
+        <!-- Chatbot Interface -->
+        <div id="chatbot-container" class="hidden">
+            <div id="chat-window" class="chat-display"></div>
+            <div id="chat-input">
+                <input type="text" id="user-input" placeholder="Nachricht schreiben...">
+                <button id="send-button">Senden</button>
+                <button id="feedback-button" onclick="openFeedback()">Feedback</button>
+            </div>
+        </div>
+    
+        <!-- Feedback Section -->
+        <div id="feedback-container" class="hidden">
+            <div id="feedback-window">
+                <h3>Wie finden Sie Nova?</h3>
+                <div class="stars">
+                    <span data-value="1" class="star" onclick="rateFeedback(1)">★</span>
+                    <span data-value="2" class="star" onclick="rateFeedback(2)">★</span>
+                    <span data-value="3" class="star" onclick="rateFeedback(3)">★</span>
+                    <span data-value="4" class="star" onclick="rateFeedback(4)">★</span>
+                    <span data-value="5" class="star" onclick="rateFeedback(5)">★</span>
+                </div>
+                <textarea id="feedback-text" placeholder="Hinterlassen Sie Ihr Feedback..."></textarea>
+                <button id="feedback-button" onclick="submitFeedback()">Feedback senden</button>
+                <button id="back-button" onclick="backToChat()">Zurück zum Chat</button>
+            </div>
         </div>
     </div>
 
-    <script>
-        const chatWindow = document.getElementById('chat-window');
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
-        const chatInput = document.getElementById('chat-input');
-        let selectedLanguage = null;
-
-        const presetQuestions = {
-            en: [
-                "What is InnoAI Solution?",
-                "How do your solutions help my business?",
-                "What can the ChatBot do for my business?"
-            ],
-            de: [
-                "Was ist InnoAI Solution?",
-                "Wie helfen Ihre Lösungen meinem Unternehmen?",
-                "Was kann der ChatBot für mein Unternehmen tun?"
-            ]
-        };
-
-        // Funktion, um eine Nachricht in das Chatfenster hinzuzufügen
-        function appendMessage(content, sender) {
-            const message = document.createElement('div');
-            message.className = `message ${sender}`;
-            message.innerHTML = `<span>${content}</span>`;
-            chatWindow.appendChild(message);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-        }
-
-        // Funktion, um Sprachwahlbuttons hinzuzufügen
-        function addLanguageButtons() {
-            const languageButtons = document.createElement('div');
-            languageButtons.className = 'language-buttons';
-            languageButtons.innerHTML = `
-                <button class="english" onclick="setLanguage('en')">English</button>
-                <button class="german" onclick="setLanguage('de')">Deutsch</button>
-            `;
-            chatWindow.appendChild(languageButtons);
-        }
-
-        // Funktion, um vorgefertigte Fragen hinzuzufügen
-        function addPresetQuestions() {
-            const presetQuestionsContainer = document.createElement('div');
-            presetQuestionsContainer.className = 'preset-questions';
-
-            presetQuestions[selectedLanguage].forEach((question) => {
-                const button = document.createElement('button');
-                button.textContent = question;
-                button.onclick = () => askPresetQuestion(question);
-                presetQuestionsContainer.appendChild(button);
-            });
-
-            chatWindow.appendChild(presetQuestionsContainer);
-        }
-
-        // Funktion, um die Sprache auszuwählen
-        function setLanguage(language) {
-            selectedLanguage = language;
-            appendMessage(
-                language === 'en'
-                    ? 'Great! You can now ask me anything in English.'
-                    : 'Super! Du kannst mir jetzt auf Deutsch Fragen stellen.',
-                'bot'
-            );
-            document.querySelector('.language-buttons').remove();
-            addPresetQuestions();
-            chatInput.style.display = 'flex';
-        }
-
-        // Funktion für vorgefertigte Fragen
-        function askPresetQuestion(question) {
-            appendMessage(question, 'user');
-            fetchAnswer(question);
-        }
-
-        // Funktion, um eine Antwort vom Server zu holen
-        async function fetchAnswer(userMessage) {
-            try {
-                const response = await fetch('/ask', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ question: userMessage, language: selectedLanguage }),
-                });
-
-                if (!response.ok) throw new Error('Server antwortet nicht');
-
-                const data = await response.json();
-
-                if (data && data.response && data.response.answer) {
-                    appendMessage(data.response.answer, 'bot');
-                } else {
-                    appendMessage('Entschuldigung, es gab ein Problem mit der Antwort.', 'bot');
-                }
-            } catch (error) {
-                appendMessage('Entschuldigung, es gab ein Problem mit dem Server.', 'bot');
-            }
-        }
-
-        // Initiale Nachricht des Chatbots
-        appendMessage('Hello! Would you like to chat in English or German?', 'bot');
-        addLanguageButtons();
-
-        // Event Listener für Senden-Button
-        sendButton.addEventListener('click', () => {
-            const userMessage = userInput.value.trim();
-            if (userMessage === '' || !selectedLanguage) return;
-            appendMessage(userMessage, 'user');
-            userInput.value = '';
-            fetchAnswer(userMessage);
-        });
-
-        // Event Listener für Enter-Taste
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendButton.click();
-        });
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='feedback.js') }}"></script>
 </body>
 </html>
