@@ -2,7 +2,7 @@ import sqlite3
 import os
 
 # Definiere den Pfad zur FAQ.db
-db_path = os.path.join(os.getcwd(),'Test.db')
+db_path = os.path.join(os.getcwd(),'FAQ.db')
 
 # Stelle sicher, dass der Ordner 'Test' existiert
 if not os.path.exists(os.path.dirname(db_path)):
